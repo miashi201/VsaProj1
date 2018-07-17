@@ -57,7 +57,7 @@ class NewsStory(object):
         * summary
         * link
     """
-    def __init__(self, guid):
+    def __init__(self, guid, title, subject, summary, link):
         """
         Returns a NewsStory object with the following attributes
         :param guid: a string that serves as a unique name for this entry 
@@ -67,10 +67,27 @@ class NewsStory(object):
         :param link: string     
         """
         self.guid = guid
+        self.title = title
+        self.subject = subject
+        self.summary = summary
+        self.link = link
+
+
 
     def get_guid(self):
         return self.guid
 
+    def get_title(self):
+        return self.title
+
+    def get_subject(self):
+        return self.subject
+
+    def get_summary(self):
+        return self.summary
+
+    def get_link(self):
+        return self.link
 # Your job is to write functions for the other 4 attributes.
 
 
@@ -95,6 +112,10 @@ class Trigger(object):
 
 # TODO: WordTrigger
 
+
+class WordTrigger(Trigger):
+    def is_word_in(self, title, guid, summary, link, subject):
+
 # Create a class, WordTrigger, that is a subclass of trigger.
 
 # You will need a constructor (an "init" method). This constructor should take a word
@@ -104,7 +125,6 @@ class Trigger(object):
 # You will also need one method: is_word_in. This method will take in one string,
 # and it will return True if the word is in the text, False otherwise. This method
 # should not be case sensitive.
-
 
 
 
