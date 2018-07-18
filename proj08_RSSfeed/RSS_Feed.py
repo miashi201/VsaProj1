@@ -186,7 +186,21 @@ class SummaryTrigger(WordTrigger):
 #  class WordTigger.
 # They will also need an evaluate method.
 # TODO: NotTrigger
+class NotTrigger(Trigger):
+    def __init__(self, T):
+        self.T = T
+    def evaluate(self, story):
+        return not self.T.evaluate(story)
+
+
 # TODO: AndTrigger
+class AndTrigger(Trigger):
+    def __int__(self,D,B):
+        self.D = D
+        self.B = B
+    def evaluate(self, D, B):
+        return self.D.evaluate(story)
+        return self.B.evaluate(story`)
 # TODO: OrTrigger
 
 
