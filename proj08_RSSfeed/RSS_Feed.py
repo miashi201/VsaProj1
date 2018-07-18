@@ -6,6 +6,7 @@ import string
 import time
 from project_util import translate_html
 from news_gui import Popup
+import string
 
 #-----------------------------------------------------------------------
 #
@@ -113,8 +114,25 @@ class Trigger(object):
 # TODO: WordTrigger
 
 
+punctuation = string.punctuation
+
+
 class WordTrigger(Trigger):
-    def is_word_in(self, title, guid, summary, link, subject):
+
+    def __init__(self, text):
+        self.text = text
+        self.text = self.text.lower()
+
+    def is_word_in(self, sentence):
+        sentence = sentence.lower()
+        for item in string.punctuation:
+            sentence = sentence.replace(item, " ")
+        word_list = sentence.split(" ")
+        if self.text in word_list:
+            return True
+        else:
+            return False
+
 
 # Create a class, WordTrigger, that is a subclass of trigger.
 
@@ -143,6 +161,21 @@ class WordTrigger(Trigger):
 # TODO: TitleTrigger
 # TODO: SubjectTrigger
 # TODO: SummaryTrigger
+class TitleTrigger(WordTrigger):
+    def evaluate(self, story):
+        title = story.get_title()
+        return self.is_word_in(title)
+
+class SubjectTrigger(WordTrigger):
+    def evaluate(self, story):
+        subject = story.get_subject()
+        return self.is_word_in(subject)
+
+class SummaryTrigger(WordTrigger):
+    def evaluate(self, story):
+        summary = story.get_summary()
+        return self.is_word_in(summary)
+
 
 
 # Composite Triggers
