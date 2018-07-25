@@ -10,6 +10,7 @@
 import random
 import string
 
+
 WORDLIST_FILENAME = "words.txt"
 
 
@@ -52,6 +53,7 @@ wordlist = load_words()
 
 word = choose_word(wordlist)
 random = word
+wrong_guess = 0
 lst = []
 for letter in random:
     lst.append(letter)
@@ -60,14 +62,39 @@ for letter in random:
 blank = []
 for letter in random:
     blank.append("_")
-print blank
 
-print "Welcome to Hangman!"
+print"* * * * * * *"
+print"*|         |*"
+print"*|         |*"
+print"*|_________|* * * * * * * * * * * * * * * * * * * * * * * * *     "
+print"*|         |_____   ______ ____  ---- ---- ______   ______  *"
+print"*|         ||    |  |     |    ||    |    ||     |  |     | * "
+print"*|         ||____|\_|     |____||    |    ||_____|\_|     | *"
+print"* * * * * * * * * * * * * * * *|* * * * * * * * * * * * * * * "
+print"                               | "
+print"                           |___|"
+print""
+
+print" Welcome To Hangman!"
+print "-------------"
+print "|            "
+print "|            "
+print "|"
+print "|"
+print "|"
+print "|"
+print "|"
+print "|"
+print "_____________"
+print
+print blank
+print
 print "I am thinking of a word that is" ,len(lst), "letters long!"
 
 counter = 0
 guess = 20
 var = string.lowercase
+print
 print "Available letters:" ,var
 
 win = False
@@ -84,44 +111,116 @@ while guess > 0 and guess <= 20:
     print "--------------------"
     print ""
     guess = guess - 1
+
     print "You have", int(guess), "left! "
     for letter in lst:
         if user_input == lst[counter]:
             blank[counter] = user_input
         counter = counter + 1
-        # if ("_") not in blank:
-        #     print "YAAAASSSSSSS QUEEN YOU WON!!!! <3"
-        #     break
-        # if ("_") in blank:
-        #     print "You lost stupid </3"
-        #     break
-        # if guess > 10:
-        #     print "You lose! TRY AGAIN"
 
-    # guess = guess - 1
-    # print "You have", int(guess), "left! "
+    if user_input not in var:
+        print "You can't put that! TRY AGAIN"
+        wrong_guess = wrong_guess + 1
+    elif user_input not in random:
+        print "Oops that is not correct!"
+        wrong_guess = wrong_guess + 1
+
+    if wrong_guess == 1:
+        print "-------------"
+        print "|            |"
+        print "|            O"
+        print "|"
+        print "|"
+        print "|"
+        print "|"
+        print "|"
+        print "|"
+        print "_____________"
+    if wrong_guess == 2:
+        print "-------------"
+        print "|            |"
+        print "|            O"
+        print "|            |"
+        print "|            |"
+        print "|            |"
+        print "|"
+        print "|"
+        print "|"
+        print "_____________"
+    if wrong_guess == 3:
+        print "-------------"
+        print "|            |"
+        print "|            O"
+        print "|          _/|"
+        print "|            |"
+        print "|            |"
+        print "|"
+        print "|"
+        print "|"
+        print "_____________"
+    if wrong_guess == 4:
+        print "-------------"
+        print "|            |"
+        print "|            O"
+        print "|          _/|\_"
+        print "|            |"
+        print "|            |"
+        print "|"
+        print "|"
+        print "|"
+        print "_____________"
+    if wrong_guess == 5:
+        print "-------------"
+        print "|            |"
+        print "|            O"
+        print "|          _/|\_"
+        print "|            |"
+        print "|            |"
+        print "|          _/ "
+        print "|"
+        print "|"
+        print "_____________"
+
     print blank
 
-    # var = string.lowercase
-    # print "Letters left:" ,var
-    if user_input in blank:
+    if user_input in var:
         var = var.replace(user_input, "")
     print "Available letters:" ,var
     counter = 0
-    # if user_input not in var:
-    #     print "You've already chosen this letter! TRY AGAIN"
-    #     guess = guess + 1
-if win == False:
-    print ""
-    print "------------------"
-    print ""
-    print lst
-    print ""
-    print "------------------"
-    print ""
-    print "Oh no bby you lost :( </3"
-if win == True:
-    guess = 0
+
+
+    if wrong_guess == 6:
+
+        print "-------------"
+        print "|            |"
+        print "|            O"
+        print "|            |"
+        print "|          _/|\_"
+        print "|            |"
+        print "|          _/ \_"
+        print "|"
+        print "|"
+        print "______________"
+        print "You have 0 guesses left"
+        print lst
+        print ""
+        print "Oh no bby you lost :( </3"
+        print
+        break
+    if win == True:
+        guess = 0
+
+play_again = raw_input("Would you like to play again? (y/n):")
+if play_again == "n":
+    win = True
+    print
+    print "Aw too bad! Is this game too hard for the bby?"
+if play_again == "y":
+    win = False
+    print "I see! Mama didn't raise no quitter,amiright?"
+
+
+
 
 
 # if letter = user_input:
