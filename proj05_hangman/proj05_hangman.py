@@ -95,13 +95,13 @@ def hangman():
     print "You have 20 chances to get it right! Easy enough?"
 
     counter = 0
-    guess = 2
+    guess = 20
     var = string.lowercase
     print
     print "Available letters:" ,var
 
     win = False
-    while guess > 0 and guess <= 2:
+    while guess > 0 and guess <= 20:
         if ("_") not in blank:
             win = True
             print ""
@@ -230,6 +230,8 @@ while True:
     if play_again == "y":
         print
         print "I see! Mama didn't raise no quitter,amiright?"
+        print
+        print
         hangman()
 
 
